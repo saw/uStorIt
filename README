@@ -1,0 +1,5 @@
+U-Stor-It
+
+This is an attempt to make a super lightweight interface that allows easy, client-side, key-value storage.
+
+Currently it only works (and has been tested) on Safari 4 and Firefox 3.0.11 on a mac. I plan to have this support Google Gears in all the browsers it will work in as well as IE 8 natively.
