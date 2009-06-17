@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>first</title>
+	<meta name="generator" content="TextMate http://macromates.com/">
+	<meta name="author" content="">
+	<!-- Date: 2009-06-16 -->
+</head>
+<body>
+<div id="f">
+    <form action="first.html" method="get">
+        <p><label for="name">NAME</label><input type="text" name="name" value="" id="name"></p>
+        
+        <p><input type="submit" value="Continue &rarr;" /></p>
+    </form>
+</div>
+</body>
+<script src="../source/ustorit.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/yui-base.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/oop.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/event.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/dom.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/node.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/substitute.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/io-base.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dali/js/yui/json.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+YUI().use('*', function(Y){
+    var form = Y.get(document.getElementById('f'));
+    var f = form.query('form');
+    
+    var store = ustorit.getUnit('myunit');
+    
+    var v = store.get('myvalue');
+    
+    form.appendChild(form.create('<p>Old Value:'+v+'</p>'));
+    
+    f.attach('submit',function(o){
+        o.preventDefault();
+        
+        var tar = o.target;
+        var i = tar.query('#name');
+        var v = i.get('value');
+        store.set('myvalue', v);
+        form.appendChild(form.create('<p>New Value:'+v+'</p>'));
+    });
+});
+</script>
+</html>
