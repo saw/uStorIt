@@ -3,15 +3,43 @@ var ustorit = null;
 
     
     var PREFIX = 'ustorit';
-
-
     
-    function getValue(key){}
+    var globalStorageInterface = function(){
+        
+        var store = globalStorage;
+        
+        var domain = window.location.hostname;
+        
+        return {
+            
+            setItem:function(key, value){
+                store[domain][key] = value;
+            },
+            
+            getItem:function(key){
+                return store[domain][key];
+            }
+        };
+        
+    };
+    
+    function storageInterfaceFactory(){
+        
+        if(typeof(localStorage) === 'object'){
+            return localStorage;
+        }
+        
+        if(typeof(globalStorage) === 'object'){
+            return globalStorageInterface();
+        }
+ 
+        
+    };
     
     function unitFactory(name){
 
         var storeName = name;
-        var store = localStorage;
+        var store = storageInterfaceFactory();
 
         function _get(key){
             return store.getItem(PREFIX+storeName+key);
@@ -19,12 +47,6 @@ var ustorit = null;
         
         function _set(key, value){
             store.setItem(PREFIX+storeName+key,value);
-        }
-        
-        var safari = {
-            
-            //get
-            
         }
         
         return {
