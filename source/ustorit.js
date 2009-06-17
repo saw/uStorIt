@@ -1,6 +1,5 @@
-var ustorit = null;
 (function(){
-
+if (typeof ustorit === 'undefined' || !ustorit) {
     
     var PREFIX = 'ustorit';
     
@@ -59,7 +58,9 @@ var ustorit = null;
             }
         };
     };
-   
+
+
+   //its a global! omg!
    ustorit = {
        
        getUnit:function(name){
@@ -67,5 +68,5 @@ var ustorit = null;
        }
        
    };
-    
+}   
 }());
